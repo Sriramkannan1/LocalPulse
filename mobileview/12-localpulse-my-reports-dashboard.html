@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .report-card {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="bg-[#F8FAFC]">
+  <div class="w-full h-screen flex flex-col overflow-hidden">
+    
+    <!-- Header -->
+    <header class="shrink-0 pt-14 px-6 pb-4 bg-white">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <button id="back-btn" class="w-11 h-11 flex items-center justify-center rounded-full active:bg-slate-100">
+            <iconify-icon icon="lucide:arrow-left" class="text-2xl text-slate-900"></iconify-icon>
+          </button>
+          <h1 class="text-[20px] font-bold text-slate-900">My Reports</h1>
+        </div>
+        <button id="notif-btn" class="w-11 h-11 flex items-center justify-center rounded-full active:bg-slate-100 relative">
+          <iconify-icon icon="lucide:bell" class="text-2xl text-slate-900"></iconify-icon>
+          <span class="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full border-2 border-white"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Content Area -->
+    <main class="flex-1 overflow-y-auto px-6 py-4 space-y-4 no-scrollbar pb-10" id="reports-list">
+      <!-- Populated by js/user/myreports.js -->
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="shrink-0 pb-[34px] px-8 bg-white border-t border-slate-100 flex items-center justify-between h-[94px]">
+      <a href="04-localpulse-feed-screen.html" id="nav-feed" class="flex flex-col items-center gap-1 opacity-40">
+        <iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon>
+        <span class="text-[10px] font-semibold">Feed</span>
+      </a>
+      <a href="12-localpulse-my-reports-dashboard.html" id="nav-reports" class="flex flex-col items-center gap-1 text-[#16A34A]">
+        <iconify-icon icon="lucide:clipboard-list" class="text-2xl"></iconify-icon>
+        <span class="text-[10px] font-bold">My Reports</span>
+      </a>
+      <a href="05-localpulse-report-issue-screen.html" id="nav-report" class="flex items-center justify-center -mt-10">
+        <div class="w-[56px] h-[56px] bg-[#16A34A] rounded-full flex items-center justify-center shadow-lg shadow-[#16a34a]/30">
+          <iconify-icon icon="lucide:plus" class="text-white text-3xl"></iconify-icon>
+        </div>
+      </a>
+      <a href="#" id="nav-events" class="flex flex-col items-center gap-1 opacity-40">
+        <iconify-icon icon="lucide:calendar" class="text-2xl"></iconify-icon>
+        <span class="text-[10px] font-semibold">Events</span>
+      </a>
+      <a href="07-localpulse-settings-screen.html" id="nav-profile" class="flex flex-col items-center gap-1 opacity-40">
+        <iconify-icon icon="lucide:user" class="text-2xl"></iconify-icon>
+        <span class="text-[10px] font-semibold">Profile</span>
+      </a>
+    </footer>
+
+  </div>
+  <script src="js/core/storage.js"></script>
+  <script src="js/data/mockdb.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/user/myreports.js"></script>
+</body>
+</html>

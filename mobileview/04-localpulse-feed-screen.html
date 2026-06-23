@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="bg-[#F8FAFC] antialiased">
+  <div class="w-full h-screen flex flex-col">
+    
+    <!-- Header -->
+    <header class="shrink-0 pt-14 bg-white shadow-sm z-30">
+      <div class="px-4 h-14 flex items-center justify-between">
+        <button class="w-11 h-11 flex items-center justify-start text-slate-800" id="header-menu-btn">
+          <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+        </button>
+        <h1 class="text-[#16A34A] font-bold text-lg">LocalPulse</h1>
+        <button class="w-11 h-11 flex items-center justify-end text-slate-800" id="header-notif-btn">
+          <iconify-icon icon="lucide:bell" class="text-2xl"></iconify-icon>
+        </button>
+      </div>
+      
+      <!-- Tabs -->
+      <div class="flex px-4">
+        <div class="flex-1 flex flex-col items-center pt-2 pb-1 relative">
+          <span class="text-[#16A34A] font-semibold text-sm pb-2">Feed</span>
+          <div class="absolute bottom-0 w-full h-0.5 bg-[#16A34A] rounded-full"></div>
+        </div>
+        <div class="flex-1 flex flex-col items-center pt-2 pb-1 cursor-pointer" id="tab-events">
+          <span class="text-slate-400 font-medium text-sm pb-2">Events</span>
+        </div>
+        <div class="flex-1 flex flex-col items-center pt-2 pb-1 cursor-pointer" id="tab-providers">
+          <span class="text-slate-400 font-medium text-sm pb-2">Providers</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Search Bar (Sticky-ish) -->
+    <div class="bg-[#F8FAFC] px-4 py-4 shrink-0">
+      <div class="relative flex items-center">
+        <iconify-icon icon="lucide:search" class="absolute left-4 text-slate-400 text-lg"></iconify-icon>
+        <input 
+          type="text" 
+          placeholder="Search issues..." 
+          class="w-full h-12 pl-11 pr-4 bg-white border border-slate-100 rounded-2xl text-sm font-medium focus:outline-none shadow-sm"
+        >
+      </div>
+    </div>
+
+    <!-- Main Feed -->
+    <main class="flex-1 overflow-y-auto px-4 pb-24 relative">
+      
+      <!-- Issue Card 1 -->
+      <div class="bg-white rounded-[20px] p-4 mb-4 shadow-sm border border-slate-50">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-slate-900 font-bold text-[16px] leading-tight flex-1 mr-2">Broken Street Light</h3>
+          <span class="bg-orange-50 text-[#F59E0B] text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Electricity</span>
+        </div>
+        <p class="text-slate-500 text-[13px] leading-relaxed mb-4">
+          The street light near Green Park is not working since last night. It's too dark and unsafe for pedestrians.
+        </p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center text-slate-400">
+            <iconify-icon icon="lucide:map-pin" class="text-sm mr-1"></iconify-icon>
+            <span class="text-[12px] font-medium">Green Park, Coimbatore</span>
+          </div>
+          <span class="text-slate-400 text-[11px] font-medium">2h ago</span>
+        </div>
+      </div>
+
+      <!-- Issue Card 2 -->
+      <div class="bg-white rounded-[20px] p-4 mb-4 shadow-sm border border-slate-50">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-slate-900 font-bold text-[16px] leading-tight flex-1 mr-2">Pothole on Main Road</h3>
+          <span class="bg-red-50 text-red-500 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Road Issue</span>
+        </div>
+        <p class="text-slate-500 text-[13px] leading-relaxed mb-4">
+          Large pothole causing traffic on Main Road near Bus Stand. Needs immediate repair.
+        </p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center text-slate-400">
+            <iconify-icon icon="lucide:map-pin" class="text-sm mr-1"></iconify-icon>
+            <span class="text-[12px] font-medium">Main Road, Coimbatore</span>
+          </div>
+          <span class="text-slate-400 text-[11px] font-medium">4h ago</span>
+        </div>
+      </div>
+
+      <!-- Issue Card 3 -->
+      <div class="bg-white rounded-[20px] p-4 mb-4 shadow-sm border border-slate-50">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-slate-900 font-bold text-[16px] leading-tight flex-1 mr-2">Overflowing Garbage Bin</h3>
+          <span class="bg-emerald-50 text-emerald-600 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Waste Management</span>
+        </div>
+        <p class="text-slate-500 text-[13px] leading-relaxed mb-4">
+          Garbage bin near Market is overflowing and causing bad smell. Stray dogs are scattering waste.
+        </p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center text-slate-400">
+            <iconify-icon icon="lucide:map-pin" class="text-sm mr-1"></iconify-icon>
+            <span class="text-[12px] font-medium">Market Road, Coimbatore</span>
+          </div>
+          <span class="text-slate-400 text-[11px] font-medium">5h ago</span>
+        </div>
+      </div>
+
+      <!-- Issue Card 4 -->
+      <div class="bg-white rounded-[20px] p-4 mb-4 shadow-sm border border-slate-50">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-slate-900 font-bold text-[16px] leading-tight flex-1 mr-2">Leaking Water Pipe</h3>
+          <span class="bg-blue-50 text-blue-500 text-[10px] font-bold px-2 py-1 rounded-md uppercase tracking-wider">Water Issue</span>
+        </div>
+        <p class="text-slate-500 text-[13px] leading-relaxed mb-4">
+          Major water leakage observed at the corner of 4th street. Huge amount of water being wasted.
+        </p>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center text-slate-400">
+            <iconify-icon icon="lucide:map-pin" class="text-sm mr-1"></iconify-icon>
+            <span class="text-[12px] font-medium">RS Puram, Coimbatore</span>
+          </div>
+          <span class="text-slate-400 text-[11px] font-medium">6h ago</span>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Floating Action Button -->
+    <button 
+      class="fixed bottom-[94px] right-5 w-14 h-14 bg-[#16A34A] rounded-full flex items-center justify-center text-white shadow-lg shadow-emerald-200 active:scale-95 transition-transform z-40"
+      id="fab-add-issue"
+    >
+      <iconify-icon icon="lucide:plus" class="text-3xl"></iconify-icon>
+    </button>
+
+    <!-- Bottom Navigation -->
+    <footer class="shrink-0 pb-[34px] bg-white border-t border-slate-100 z-50">
+      <div class="flex h-16">
+        <a href="04-localpulse-feed-screen.html" id="nav-feed-link" class="flex-1 flex flex-col items-center justify-center">
+          <iconify-icon icon="lucide:home" class="text-2xl text-[#16A34A]"></iconify-icon>
+          <span class="text-[10px] font-bold mt-1 text-[#16A34A]">Feed</span>
+        </a>
+        <a href="12-localpulse-my-reports-dashboard.html" id="nav-reports-link" class="flex-1 flex flex-col items-center justify-center">
+          <iconify-icon icon="lucide:clipboard-list" class="text-2xl text-slate-400"></iconify-icon>
+          <span class="text-[10px] font-bold mt-1 text-slate-400">My Reports</span>
+        </a>
+        <a href="05-localpulse-report-issue-screen.html" id="nav-report-link" class="flex-1 flex flex-col items-center justify-center">
+          <iconify-icon icon="lucide:plus-square" class="text-2xl text-slate-400"></iconify-icon>
+          <span class="text-[10px] font-bold mt-1 text-slate-400">Report</span>
+        </a>
+        <a href="07-localpulse-settings-screen.html" id="nav-profile-link" class="flex-1 flex flex-col items-center justify-center">
+          <iconify-icon icon="lucide:user" class="text-2xl text-slate-400"></iconify-icon>
+          <span class="text-[10px] font-bold mt-1 text-slate-400">Profile</span>
+        </a>
+      </div>
+    </footer>
+
+  </div>
+  <script src="js/core/storage.js"></script>
+  <script src="js/data/mockdb.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/user/feed.js"></script>
+</body>
+</html>

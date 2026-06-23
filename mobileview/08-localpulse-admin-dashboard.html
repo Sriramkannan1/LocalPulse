@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .card-shadow {
+      box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="bg-[#F8FAFC] text-[#1F2937]">
+  <div class="w-full h-screen flex flex-col">
+    
+    <!-- Top App Bar -->
+    <header class="shrink-0 pt-14 bg-white border-b border-slate-100 px-4 pb-4">
+      <div class="flex items-center justify-between">
+        <button id="btn-open-nav" class="w-11 h-11 flex items-center justify-start text-slate-800" aria-label="Menu">
+          <iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon>
+        </button>
+        <h1 class="text-[#16A34A] font-bold text-lg tracking-tight">LocalPulse</h1>
+        <button id="btn-open-notifications" class="w-11 h-11 flex items-center justify-end text-slate-800 relative" aria-label="Notifications">
+          <iconify-icon icon="lucide:bell" class="text-2xl"></iconify-icon>
+          <span id="notification-badge" class="absolute top-1 right-0 w-4 h-4 bg-red-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center hidden border-2 border-white">0</span>
+        </button>
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto px-4 py-6 no-scrollbar">
+      
+      <!-- Greeting Section -->
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold text-[#1F2937]">Welcome, Admin 👋</h2>
+      </div>
+
+      <!-- Action Alerts Grid -->
+      <div class="grid grid-cols-2 gap-4 mb-8">
+        <!-- Card 1: Awaiting Response -->
+        <a href="10-localpulse-admin-issues-management.html" class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block active:scale-[0.98] transition-transform">
+          <div class="w-10 h-10 bg-[#F59E0B]/10 rounded-xl flex items-center justify-center mb-3">
+            <iconify-icon icon="lucide:clock" class="text-[#F59E0B] text-xl"></iconify-icon>
+          </div>
+          <p class="text-[#6B7280] text-[11px] font-bold uppercase mb-1">Awaiting Response</p>
+          <p class="text-2xl font-bold text-[#1F2937]" id="alert-awaiting">0</p>
+        </a>
+
+        <!-- Card 2: Rejected -->
+        <a href="10-localpulse-admin-issues-management.html" class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block active:scale-[0.98] transition-transform">
+          <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center mb-3">
+            <iconify-icon icon="lucide:x-circle" class="text-red-500 text-xl"></iconify-icon>
+          </div>
+          <p class="text-[#6B7280] text-[11px] font-bold uppercase mb-1">Rejected</p>
+          <p class="text-2xl font-bold text-[#1F2937]" id="alert-rejected">0</p>
+        </a>
+
+        <!-- Card 3: Reassign Needed -->
+        <a href="10-localpulse-admin-issues-management.html" class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block active:scale-[0.98] transition-transform">
+          <div class="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center mb-3">
+            <iconify-icon icon="lucide:refresh-cw" class="text-indigo-600 text-xl"></iconify-icon>
+          </div>
+          <p class="text-[#6B7280] text-[11px] font-bold uppercase mb-1">Reassign Needed</p>
+          <p class="text-2xl font-bold text-[#1F2937]" id="alert-reassign">0</p>
+        </a>
+
+        <!-- Card 4: Resolved Today -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block">
+          <div class="w-10 h-10 bg-[#10B981]/10 rounded-xl flex items-center justify-center mb-3">
+            <iconify-icon icon="lucide:check-circle-2" class="text-[#10B981] text-xl"></iconify-icon>
+          </div>
+          <p class="text-[#6B7280] text-[11px] font-bold uppercase mb-1">Resolved Today</p>
+          <p class="text-2xl font-bold text-[#1F2937]" id="alert-resolved">0</p>
+        </div>
+
+        <!-- Card 5: Verification Pending -->
+        <a href="10-localpulse-admin-issues-management.html" class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block active:scale-[0.98] transition-transform">
+          <div class="w-10 h-10 bg-purple-100 rounded-xl flex items-center justify-center mb-3">
+            <iconify-icon icon="lucide:shield-alert" class="text-purple-600 text-xl"></iconify-icon>
+          </div>
+          <p class="text-[#6B7280] text-[11px] font-bold uppercase mb-1">Verification Pending</p>
+          <p class="text-2xl font-bold text-[#1F2937]" id="alert-verif-pending">0</p>
+        </a>
+
+        <!-- Card 6: Verified Today -->
+        <div class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block">
+          <div class="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center mb-3">
+            <iconify-icon icon="lucide:shield-check" class="text-emerald-600 text-xl"></iconify-icon>
+          </div>
+          <p class="text-[#6B7280] text-[11px] font-bold uppercase mb-1">Verified Today</p>
+          <p class="text-2xl font-bold text-[#1F2937]" id="alert-verified-today">0</p>
+        </div>
+
+        <!-- Card 7: Rejected Verifications -->
+        <a href="10-localpulse-admin-issues-management.html" class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow block active:scale-[0.98] transition-transform col-span-2">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center">
+                <iconify-icon icon="lucide:shield-x" class="text-red-600 text-xl"></iconify-icon>
+              </div>
+              <p class="text-[#6B7280] text-[11px] font-bold uppercase">Rejected Verifications</p>
+            </div>
+            <p class="text-2xl font-bold text-[#1F2937]" id="alert-rejected-verif">0</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Provider Coverage Heatmap -->
+      <div class="mb-8">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-sm font-bold text-[#16A34A] uppercase tracking-wider">Coverage Heatmap</h3>
+          <a href="16-localpulse-provider-management-advanced.html" class="text-xs font-bold text-[#3B82F6]">Manage</a>
+        </div>
+        <div class="bg-white p-5 rounded-2xl border border-slate-100 card-shadow space-y-4" id="coverage-heatmap">
+          <!-- Filled via JS -->
+        </div>
+      </div>
+
+      <!-- Provider Performance -->
+      <div class="mb-8">
+        <h3 class="text-sm font-bold text-[#16A34A] uppercase tracking-wider mb-3">Top Providers</h3>
+        <div class="bg-white rounded-2xl border border-slate-100 card-shadow p-2 space-y-2" id="provider-performance-list">
+          <!-- JS Rendered -->
+        </div>
+      </div>
+
+      <!-- Recent Issues Section -->
+      <div class="mb-4">
+        <h3 class="text-sm font-bold text-[#16A34A] uppercase tracking-wider">Recent Issues</h3>
+      </div>
+
+      <!-- Issue List managed by js/admin/dashboard.js -->
+      <div class="space-y-4 pb-4" id="recent-issues-list">
+        <!-- Filled via JS -->
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="shrink-0 bg-white border-t border-slate-100 pb-[34px] pt-2">
+      <div class="flex justify-around items-center h-14">
+        <a href="08-localpulse-admin-dashboard.html" id="nav-home" class="flex flex-col items-center justify-center w-full text-[#16A34A]">
+          <iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon>
+          <span class="text-[10px] font-semibold mt-1">Home</span>
+        </a>
+        <a href="10-localpulse-admin-issues-management.html" id="nav-issues" class="flex flex-col items-center justify-center w-full text-slate-400">
+          <iconify-icon icon="lucide:clipboard-list" class="text-2xl"></iconify-icon>
+          <span class="text-[10px] font-medium mt-1">Manage Issues</span>
+        </a>
+        <a href="09-localpulse-admin-events-screen.html" id="nav-events" class="flex flex-col items-center justify-center w-full text-slate-400">
+          <iconify-icon icon="lucide:calendar" class="text-2xl"></iconify-icon>
+          <span class="text-[10px] font-medium mt-1">Events</span>
+        </a>
+        <a href="11-localpulse-admin-providers-management.html" id="nav-providers" class="flex flex-col items-center justify-center w-full text-slate-400">
+          <iconify-icon icon="lucide:users" class="text-2xl"></iconify-icon>
+          <span class="text-[10px] font-medium mt-1">Providers</span>
+        </a>
+        <a href="#" onclick="Storage.logout(); window.location.href='03-localpulse-mobile-login-screen.html';" id="nav-logout" class="flex flex-col items-center justify-center w-full text-slate-400">
+          <iconify-icon icon="lucide:log-out" class="text-2xl"></iconify-icon>
+          <span class="text-[10px] font-medium mt-1">Logout</span>
+        </a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Shared Overlay -->
+  <div id="drawer-overlay" class="fixed inset-0 bg-black/50 z-[100] hidden opacity-0 transition-opacity duration-300"></div>
+
+  <!-- Navigation Drawer (Left) -->
+  <div id="nav-drawer" class="fixed top-0 bottom-0 left-0 w-[80%] max-w-sm bg-white z-[110] transform -translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="p-6 bg-slate-50 border-b border-slate-100 flex items-center gap-4 shrink-0">
+      <div class="w-14 h-14 rounded-full bg-[#16A34A] flex items-center justify-center text-white text-xl font-bold border-4 border-white shadow-sm">
+        A
+      </div>
+      <div>
+        <h2 class="font-bold text-slate-900 text-lg leading-tight">Admin Name</h2>
+        <p class="text-xs font-semibold text-slate-500">Administrator</p>
+        <a href="mailto:admin@localpulse.com" class="text-[10px] text-[#16A34A] font-bold hover:underline mt-0.5 inline-block">admin@localpulse.com</a>
+      </div>
+    </div>
+    
+    <nav class="flex-1 overflow-y-auto py-4 px-4 space-y-1">
+      <a href="08-localpulse-admin-dashboard.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:layout-dashboard" class="text-lg text-slate-400"></iconify-icon> Dashboard
+      </a>
+      <a href="10-localpulse-admin-issues-management.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:clipboard-list" class="text-lg text-slate-400"></iconify-icon> Manage Issues
+      </a>
+      <a href="11-localpulse-admin-providers-management.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:users" class="text-lg text-slate-400"></iconify-icon> Provider Overview
+      </a>
+      <a href="16-localpulse-provider-management-advanced.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:user-cog" class="text-lg text-slate-400"></iconify-icon> Advanced Provider Management
+      </a>
+      <a href="09-localpulse-admin-events-screen.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:calendar" class="text-lg text-slate-400"></iconify-icon> Manage Events
+      </a>
+      <a href="17-localpulse-provider-dashboard.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:briefcase" class="text-lg text-slate-400"></iconify-icon> Field Service Portal
+      </a>
+      <button onclick="document.getElementById('nav-drawer').classList.add('-translate-x-full'); document.getElementById('drawer-overlay').classList.add('opacity-0'); setTimeout(()=>document.getElementById('drawer-overlay').classList.add('hidden'),300); window.scrollTo({top: document.body.scrollHeight, behavior: 'smooth'});" class="w-full flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:bar-chart-2" class="text-lg text-slate-400"></iconify-icon> Analytics
+      </button>
+      <a href="07-localpulse-settings-screen.html" class="flex items-center gap-3 p-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:settings" class="text-lg text-slate-400"></iconify-icon> Settings
+      </a>
+      <div class="h-px bg-slate-100 my-2 mx-2"></div>
+      <button id="btn-drawer-logout" class="w-full flex items-center gap-3 p-3 rounded-xl text-red-600 font-semibold hover:bg-red-50 active:bg-red-100 transition">
+        <iconify-icon icon="lucide:log-out" class="text-lg text-red-400"></iconify-icon> Logout
+      </button>
+    </nav>
+    <div class="p-4 border-t border-slate-100 text-center shrink-0">
+      <p class="text-[10px] font-bold text-slate-400">LocalPulse Admin v1.0</p>
+    </div>
+  </div>
+
+  <!-- Notification Drawer (Right) -->
+  <div id="notif-drawer" class="fixed top-0 bottom-0 right-0 w-[85%] max-w-sm bg-[#F8FAFC] z-[110] transform translate-x-full transition-transform duration-300 flex flex-col shadow-2xl">
+    <div class="p-4 bg-white border-b border-slate-100 flex items-center justify-between shrink-0">
+      <h2 class="font-bold text-slate-900 text-lg">Notifications</h2>
+      <button id="btn-close-notif" class="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-500 hover:text-slate-800 transition">
+        <iconify-icon icon="lucide:x" class="text-xl"></iconify-icon>
+      </button>
+    </div>
+    
+    <div class="p-3 bg-white border-b border-slate-100 shrink-0 grid grid-cols-3 gap-2">
+      <a href="10-localpulse-admin-issues-management.html" class="bg-slate-50 border border-slate-200 rounded-lg py-2 flex flex-col items-center justify-center active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:clipboard-list" class="text-slate-500 mb-1"></iconify-icon>
+        <span class="text-[9px] font-bold text-slate-700 uppercase">Issues</span>
+      </a>
+      <a href="11-localpulse-admin-providers-management.html" class="bg-slate-50 border border-slate-200 rounded-lg py-2 flex flex-col items-center justify-center active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:users" class="text-slate-500 mb-1"></iconify-icon>
+        <span class="text-[9px] font-bold text-slate-700 uppercase">Providers</span>
+      </a>
+      <a href="09-localpulse-admin-events-screen.html" class="bg-slate-50 border border-slate-200 rounded-lg py-2 flex flex-col items-center justify-center active:bg-slate-100 transition">
+        <iconify-icon icon="lucide:calendar" class="text-slate-500 mb-1"></iconify-icon>
+        <span class="text-[9px] font-bold text-slate-700 uppercase">Events</span>
+      </a>
+    </div>
+
+    <div class="flex justify-between items-center px-4 py-2 bg-slate-50 shrink-0 border-b border-slate-100">
+      <span class="text-xs font-bold text-slate-500 uppercase" id="notif-count-text">0 Unread</span>
+      <button id="btn-mark-all-read" class="text-[10px] font-bold text-[#16A34A] uppercase hover:underline">Mark All Read</button>
+    </div>
+
+    <div id="notif-list" class="flex-1 overflow-y-auto p-4 space-y-3 relative">
+      <!-- Injected via JS -->
+    </div>
+  </div>
+
+  <script src="js/core/storage.js"></script>
+  <script src="js/data/mockdb.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/admin/dashboard.js"></script>
+  <script>
+    // Coverage Heatmap Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const providers = Storage.getProviders();
+      const locations = ['RS Puram', 'Peelamedu', 'Singanallur', 'Gandhipuram']; // Top 4 for heatmap
+      
+      const heatmapContainer = document.getElementById('coverage-heatmap');
+      if(heatmapContainer) {
+        heatmapContainer.innerHTML = '';
+        const maxProviders = 10; // For percentage width
+
+        locations.forEach(loc => {
+          // Count active providers covering this area
+          const count = providers.filter(p => p.status === 'Active' && p.coverageArea && p.coverageArea.includes(loc)).length;
+          const percentage = Math.min((count / maxProviders) * 100, 100);
+          
+          let colorClass = 'bg-[#16A34A]';
+          if (count < 3) colorClass = 'bg-[#EF4444]';
+          else if (count < 6) colorClass = 'bg-[#F59E0B]';
+
+          heatmapContainer.innerHTML += `
+            <div>
+              <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                <span>${loc}</span>
+                <span>${count} Providers</span>
+              </div>
+              <div class="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
+                <div class="${colorClass} h-2 rounded-full transition-all duration-1000" style="width: ${percentage}%"></div>
+              </div>
+            </div>
+          `;
+        });
+      }
+    });
+  </script>
+</body>
+</html>

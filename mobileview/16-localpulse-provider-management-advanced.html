@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Provider Management - LocalPulse Admin</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .card-shadow { box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05); }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="bg-[#F8FAFC]">
+  <div class="w-full h-screen flex flex-col overflow-hidden">
+    
+    <!-- Header -->
+    <header class="shrink-0 pt-14 px-6 pb-4 bg-white border-b border-slate-100 z-10 flex flex-col gap-4">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          <a href="11-localpulse-admin-providers-management.html" class="w-10 h-10 flex items-center justify-center rounded-full active:bg-slate-100 transition-colors">
+            <iconify-icon icon="lucide:arrow-left" class="text-2xl text-slate-900"></iconify-icon>
+          </a>
+          <h1 class="text-[18px] font-bold text-slate-900 leading-tight">Advanced Provider<br>Management</h1>
+        </div>
+        <button id="add-provider-btn" class="flex items-center gap-1 bg-[#16A34A] text-white px-3 py-2 rounded-xl text-sm font-bold shadow-sm active:bg-green-700 transition-colors">
+          <iconify-icon icon="lucide:plus" class="text-lg"></iconify-icon> Add
+        </button>
+      </div>
+      
+      <!-- Search -->
+      <div class="relative flex items-center">
+        <iconify-icon icon="lucide:search" class="absolute left-4 text-slate-400 text-lg"></iconify-icon>
+        <input type="text" id="search-input" placeholder="Search by name, role, location..." class="w-full h-12 pl-11 pr-4 bg-[#F8FAFC] border border-slate-200 rounded-2xl text-sm font-medium focus:outline-none focus:border-[#16A34A] transition-colors">
+      </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto px-4 py-4 space-y-6 pb-10">
+      
+      <!-- Summary Dashboard -->
+      <div>
+        <h2 class="text-sm font-bold text-slate-800 mb-3 uppercase tracking-wider">Performance Metrics</h2>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow flex flex-col">
+            <span class="text-xs font-semibold text-slate-500 mb-1">Total Providers</span>
+            <span class="text-2xl font-black text-slate-900" id="metric-total">0</span>
+          </div>
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow flex flex-col">
+            <span class="text-xs font-semibold text-emerald-600 mb-1">Active</span>
+            <span class="text-2xl font-black text-emerald-700" id="metric-active">0</span>
+          </div>
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow flex flex-col">
+            <span class="text-xs font-semibold text-slate-500 mb-1">Inactive / Leave</span>
+            <span class="text-2xl font-black text-slate-900" id="metric-inactive">0</span>
+          </div>
+          <div class="bg-white p-4 rounded-2xl border border-slate-100 card-shadow flex flex-col">
+            <span class="text-xs font-semibold text-blue-600 mb-1">Assigned Issues</span>
+            <span class="text-2xl font-black text-blue-700" id="metric-assigned">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filters -->
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Filters</h2>
+          <select id="location-filter" class="text-xs font-bold bg-white border border-slate-200 text-slate-700 rounded-lg px-2 py-1 outline-none">
+            <option value="All">All Locations</option>
+            <option value="Peelamedu">Peelamedu</option>
+            <option value="Singanallur">Singanallur</option>
+            <option value="RS Puram">RS Puram</option>
+            <option value="Gandhipuram">Gandhipuram</option>
+            <option value="Saibaba Colony">Saibaba Colony</option>
+            <option value="Race Course">Race Course</option>
+            <option value="Ukkadam">Ukkadam</option>
+            <option value="Town Hall">Town Hall</option>
+            <option value="Sundarapuram">Sundarapuram</option>
+            <option value="Saravanampatti">Saravanampatti</option>
+          </select>
+        </div>
+        <div class="flex overflow-x-auto no-scrollbar gap-2 pb-1" id="category-chips">
+          <button class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-slate-800 text-white border border-slate-800" data-cat="All">All</button>
+          <button class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-500 border border-slate-200" data-cat="Electrician">Electrician</button>
+          <button class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-500 border border-slate-200" data-cat="Plumber">Plumber</button>
+          <button class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-500 border border-slate-200" data-cat="Cleaning">Cleaning</button>
+          <button class="cat-btn shrink-0 px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-500 border border-slate-200" data-cat="Mechanic">Mechanic</button>
+        </div>
+      </div>
+
+      <!-- Providers List -->
+      <div id="providers-list" class="space-y-4">
+        <!-- JS rendered cards -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Delete Modal -->
+  <div id="delete-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
+    <div class="bg-white w-full max-w-sm rounded-3xl shadow-xl overflow-hidden animate-in zoom-in-95 duration-200 p-6 text-center">
+      <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+        <iconify-icon icon="lucide:alert-triangle" class="text-3xl"></iconify-icon>
+      </div>
+      <h3 class="font-bold text-slate-900 text-xl mb-2">Are you sure?</h3>
+      <p class="text-sm text-slate-500 mb-6">Provider: <span id="delete-provider-name" class="font-bold text-slate-800"></span><br>This action cannot be undone.</p>
+      <div class="flex gap-3">
+        <button id="cancel-delete-btn" class="flex-1 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl active:bg-slate-200 transition-colors">Cancel</button>
+        <button id="confirm-delete-btn" class="flex-1 py-3 bg-red-500 text-white font-bold rounded-xl active:bg-red-600 transition-colors">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Provider Form Modal -->
+  <div id="provider-form-modal" class="fixed inset-0 z-[100] hidden items-end sm:items-center justify-center bg-slate-900/40 backdrop-blur-sm p-0 sm:p-4 transition-all duration-300">
+    <div class="bg-white w-full h-[90vh] sm:h-auto sm:max-h-[90vh] sm:max-w-lg rounded-t-3xl sm:rounded-3xl shadow-xl overflow-hidden flex flex-col transform transition-transform translate-y-full sm:translate-y-0" id="provider-modal-content">
+      <div class="flex items-center justify-between p-4 border-b border-slate-100 shrink-0">
+        <h3 id="form-modal-title" class="font-bold text-slate-900 text-lg">Add Provider</h3>
+        <button id="close-form-btn" class="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-slate-600 bg-slate-50 rounded-full">
+          <iconify-icon icon="lucide:x" class="text-xl"></iconify-icon>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6">
+        <form id="provider-form" class="space-y-4">
+          <input type="hidden" id="provider-id">
+          
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-700 ml-1">Provider Name*</label>
+            <input type="text" id="provider-name" required class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors">
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-700 ml-1">Phone Number*</label>
+              <input type="tel" id="provider-phone" required class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors">
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-700 ml-1">Email</label>
+              <input type="email" id="provider-email" class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors">
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-700 ml-1">Role*</label>
+              <select id="provider-role" required class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors appearance-none">
+                <option value="Field Technician">Field Technician</option>
+                <option value="Municipal Worker">Municipal Worker</option>
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Road Maintenance">Road Maintenance</option>
+                <option value="Water Department">Water Department</option>
+                <option value="Safety Officer">Safety Officer</option>
+                <option value="Community Volunteer">Community Volunteer</option>
+              </select>
+            </div>
+            <div class="space-y-1">
+              <label class="text-xs font-bold text-slate-700 ml-1">Category*</label>
+              <select id="provider-category" required class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors appearance-none">
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="Cleaning">Cleaning</option>
+                <option value="Mechanic">Mechanic</option>
+                <option value="Road Maintenance">Road Maintenance</option>
+                <option value="Water Supply">Water Supply</option>
+                <option value="Safety">Safety</option>
+                <option value="General">General</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-700 ml-1">Primary Location*</label>
+            <select id="provider-location" required class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors appearance-none">
+              <option value="Peelamedu">Peelamedu</option>
+              <option value="Singanallur">Singanallur</option>
+              <option value="RS Puram">RS Puram</option>
+              <option value="Gandhipuram">Gandhipuram</option>
+              <option value="Saibaba Colony">Saibaba Colony</option>
+              <option value="Race Course">Race Course</option>
+              <option value="Ukkadam">Ukkadam</option>
+              <option value="Town Hall">Town Hall</option>
+              <option value="Sundarapuram">Sundarapuram</option>
+              <option value="Saravanampatti">Saravanampatti</option>
+            </select>
+          </div>
+          
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-700 ml-1">Coverage Area (comma separated)</label>
+            <input type="text" id="provider-coverage" placeholder="e.g. Peelamedu, Singanallur" class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors">
+          </div>
+          
+          <div class="space-y-1">
+            <label class="text-xs font-bold text-slate-700 ml-1">Status*</label>
+            <select id="provider-status" required class="w-full h-12 px-4 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-[#16A34A] focus:bg-white transition-colors appearance-none">
+              <option value="Active">Active</option>
+              <option value="Inactive">Inactive</option>
+              <option value="On Leave">On Leave</option>
+              <option value="Pending Approval">Pending Approval</option>
+              <option value="Rejected">Rejected</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="p-4 border-t border-slate-100 bg-white shrink-0 pb-8 sm:pb-4">
+        <button type="submit" form="provider-form" class="w-full h-12 bg-[#16A34A] text-white font-bold rounded-xl shadow-lg shadow-green-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2">
+          <iconify-icon icon="lucide:save" class="text-xl"></iconify-icon> Save Provider
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="fixed top-4 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-4 py-3 rounded-full shadow-xl flex items-center gap-2 z-[200] transition-all duration-300 transform -translate-y-20 opacity-0">
+    <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
+      <iconify-icon icon="lucide:check" class="text-white text-sm"></iconify-icon>
+    </div>
+    <span id="toast-message" class="text-sm font-semibold">Success!</span>
+  </div>
+
+  <script src="js/core/storage.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/admin/provider-advanced.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Router.guardAdminRoute();
+    });
+  </script>
+</body>
+</html>
