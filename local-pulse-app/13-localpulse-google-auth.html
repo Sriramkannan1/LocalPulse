@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Authentication</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Roboto', sans-serif; background-color: #F0F4F9; }
+    .google-card { box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15); border-radius: 8px; background: #fff; }
+    .account-item:hover { background-color: #f8f9fa; cursor: pointer; }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    .animate-pulse-slow { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+  </style>
+  <script src="js/core/storage.js"></script>
+  <script src="js/core/router.js"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+  <div id="selection-view" class="w-full max-w-md google-card p-6 sm:p-10 flex flex-col items-center">
+    <iconify-icon icon="logos:google" width="75" class="mb-4"></iconify-icon>
+    <h1 class="text-2xl font-normal text-[#202124] mb-2">Choose an account</h1>
+    <p class="text-[16px] text-[#202124] mb-8">to continue to <span class="font-medium">LocalPulse</span></p>
+
+    <div class="w-full border border-[#dadce0] rounded-[8px] overflow-hidden">
+      <!-- Mock Accounts -->
+      <div class="account-item border-b border-[#dadce0] p-4 flex items-center gap-4" onclick="selectAccount('sriram@gmail.com')">
+        <div class="w-8 h-8 rounded-full bg-[#1a73e8] text-white flex items-center justify-center text-lg font-medium">S</div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-[#3c4043]">Sriram</p>
+          <p class="text-xs text-[#5f6368]">sriram@gmail.com</p>
+        </div>
+      </div>
+      
+      <div class="account-item border-b border-[#dadce0] p-4 flex items-center gap-4" onclick="selectAccount('nithish@gmail.com')">
+        <div class="w-8 h-8 rounded-full bg-[#ea4335] text-white flex items-center justify-center text-lg font-medium">N</div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-[#3c4043]">Nithish</p>
+          <p class="text-xs text-[#5f6368]">nithish@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="account-item border-b border-[#dadce0] p-4 flex items-center gap-4" onclick="selectAccount('community.user@gmail.com')">
+        <div class="w-8 h-8 rounded-full bg-[#34a853] text-white flex items-center justify-center text-lg font-medium">C</div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-[#3c4043]">Community User</p>
+          <p class="text-xs text-[#5f6368]">community.user@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="account-item border-b border-[#dadce0] p-4 flex items-center gap-4" onclick="selectAccount('localpulse.demo@gmail.com')">
+        <div class="w-8 h-8 rounded-full bg-[#fbbc05] text-white flex items-center justify-center text-lg font-medium">L</div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-[#3c4043]">LocalPulse Demo</p>
+          <p class="text-xs text-[#5f6368]">localpulse.demo@gmail.com</p>
+        </div>
+      </div>
+
+      <div class="account-item p-4 flex items-center gap-4" onclick="selectAccount('citizen.reporter@gmail.com')">
+        <div class="w-8 h-8 rounded-full bg-[#8e24aa] text-white flex items-center justify-center text-lg font-medium">C</div>
+        <div class="flex-1">
+          <p class="text-sm font-medium text-[#3c4043]">Citizen Reporter</p>
+          <p class="text-xs text-[#5f6368]">citizen.reporter@gmail.com</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="loading-view" class="hidden w-full max-w-md p-6 flex flex-col items-center">
+    <iconify-icon icon="logos:google" width="75" class="mb-8 animate-pulse-slow"></iconify-icon>
+    <div class="w-full max-w-[200px] h-1 bg-gray-200 rounded-full overflow-hidden mb-6 relative">
+      <div class="absolute top-0 left-0 h-full bg-[#1a73e8] w-1/2 animate-[slide_1.5s_infinite]"></div>
+    </div>
+    <p id="loading-text" class="text-[#5f6368] font-medium text-center transition-opacity duration-300">Authorizing Account...</p>
+    
+    <style>
+      @keyframes slide {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(200%); }
+      }
+    </style>
+  </div>
+
+  <script>
+    function selectAccount(email) {
+      document.getElementById('selection-view').classList.add('hidden');
+      document.getElementById('loading-view').classList.remove('hidden');
+      
+      const loadingText = document.getElementById('loading-text');
+      
+      setTimeout(() => { loadingText.innerText = "Fetching Profile..."; }, 700);
+      setTimeout(() => { loadingText.innerText = "Syncing Preferences..."; }, 1400);
+      setTimeout(() => { loadingText.innerText = "Loading Community Dashboard..."; }, 2100);
+      setTimeout(() => { loadingText.innerText = "Redirecting..."; }, 2800);
+
+      setTimeout(() => {
+        // Create session
+        Storage.login(email, "google-mock");
+        Router.navigate('04-localpulse-feed-screen.html');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

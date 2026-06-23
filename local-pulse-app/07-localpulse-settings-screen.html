@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalPulse Settings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .safe-bottom {
+      padding-bottom: 34px;
+    }
+    .safe-top {
+      padding-top: 56px;
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="bg-[#F8FAFC]">
+  <div class="flex flex-col h-screen overflow-hidden">
+    <!-- Header -->
+    <header class="shrink-0 px-5 pt-14 pb-4 bg-white flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <button id="back-button" class="w-10 h-10 flex items-center justify-start text-slate-900">
+          <iconify-icon icon="lucide:arrow-left" class="text-2xl"></iconify-icon>
+        </button>
+        <h1 class="text-[20px] font-bold text-[#16A34A]">Settings</h1>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto px-5">
+      <div class="py-4 space-y-6">
+        
+        <!-- Account Section -->
+        <div class="space-y-3">
+          <h2 class="text-[14px] font-semibold text-slate-500 uppercase tracking-wider pl-1">Account</h2>
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+            <button id="edit-profile-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:user" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">Edit Profile</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+            
+            <div class="mx-4 border-t border-slate-50"></div>
+            
+            <button id="change-password-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:lock" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">Change Password</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+            
+            <div class="mx-4 border-t border-slate-50"></div>
+            
+            <button id="notifications-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:bell" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">Notifications</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- App Section -->
+        <div class="space-y-3">
+          <h2 class="text-[14px] font-semibold text-slate-500 uppercase tracking-wider pl-1">App</h2>
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-100">
+            <button id="help-support-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:help-circle" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">Help & Support</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+            
+            <div class="mx-4 border-t border-slate-50"></div>
+            
+            <button id="terms-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:file-text" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">Terms & Conditions</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+
+            <div class="mx-4 border-t border-slate-50"></div>
+            
+            <button id="privacy-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:shield" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">Privacy Policy</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+
+            <div class="mx-4 border-t border-slate-50"></div>
+            
+            <button id="about-row" class="w-full flex items-center justify-between p-4 active:bg-slate-50 transition-colors">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-slate-600">
+                  <iconify-icon icon="lucide:info" class="text-xl"></iconify-icon>
+                </div>
+                <span class="text-[16px] font-medium text-slate-900">About LocalPulse</span>
+              </div>
+              <iconify-icon icon="lucide:chevron-right" class="text-slate-400 text-xl"></iconify-icon>
+            </button>
+          </div>
+        </div>
+
+        <!-- Logout Button -->
+        <div class="pt-4 pb-10 flex justify-center">
+          <button id="logout-btn" class="text-[16px] font-bold text-[#EF4444] px-8 py-3 rounded-full active:bg-red-50 transition-colors">
+            Logout
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <footer class="shrink-0 bg-white border-t border-slate-100 px-6 pb-[34px] pt-3 flex justify-between items-center">
+      <a id="nav-feed" href="04-localpulse-feed-screen.html" class="flex flex-col items-center gap-1 group">
+        <iconify-icon icon="lucide:home" class="text-[22px] text-slate-400 group-active:text-[#16A34A]"></iconify-icon>
+        <span class="text-[10px] font-medium text-slate-400">Feed</span>
+      </a>
+      <a id="nav-reports" href="12-localpulse-my-reports-dashboard.html" class="flex flex-col items-center gap-1 group">
+        <iconify-icon icon="lucide:clipboard-list" class="text-[22px] text-slate-400 group-active:text-[#16A34A]"></iconify-icon>
+        <span class="text-[10px] font-medium text-slate-400">My Reports</span>
+      </a>
+      <a id="nav-report-action" href="05-localpulse-report-issue-screen.html" class="flex flex-col items-center gap-1 group">
+        <iconify-icon icon="lucide:plus-circle" class="text-[22px] text-slate-400 group-active:text-[#16A34A]"></iconify-icon>
+        <span class="text-[10px] font-medium text-slate-400">Report</span>
+      </a>
+      <a id="nav-profile" href="07-localpulse-settings-screen.html" class="flex flex-col items-center gap-1">
+        <iconify-icon icon="lucide:user" class="text-[22px] text-[#16A34A]"></iconify-icon>
+        <span class="text-[10px] font-bold text-[#16A34A]">Profile</span>
+      </a>
+    </footer>
+  </div>
+  <script src="js/core/storage.js"></script>
+  <script src="js/data/mockdb.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/user/settings.js"></script>
+</body>
+</html>

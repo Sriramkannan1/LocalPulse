@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    /* Timeline vertical line */
+    .timeline-line {
+      width: 2px;
+      background-color: #E2E8F0;
+      position: absolute;
+      left: 7px;
+      top: 24px;
+      bottom: -16px;
+    }
+    .timeline-item:last-child .timeline-line {
+      display: none;
+    }
+    .custom-shadow {
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+  <div class="w-full h-screen flex flex-col bg-[#F8FAFC]">
+    <!-- Header -->
+    <header class="shrink-0 pt-14 pb-4 px-4 bg-white flex items-center justify-between border-b border-slate-100">
+      <a href="04-localpulse-feed-screen.html" id="back-link" class="w-10 h-10 flex items-center justify-start text-slate-900">
+        <iconify-icon icon="lucide:arrow-left" class="text-2xl"></iconify-icon>
+      </a>
+      <h1 class="text-[17px] font-bold text-slate-900">Issue Details</h1>
+      <div class="w-10"></div> <!-- Spacer for centering -->
+    </header>
+
+    <!-- Content -->
+    <main class="flex-1 overflow-y-auto pb-[34px]">
+      <!-- Hero Image -->
+      <div class="px-4 pt-4">
+        <div class="relative w-full aspect-[4/3] rounded-[20px] overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1544006659-f0b21f04cb1d?q=80&w=1000&auto=format&fit=crop" 
+            alt="Street light at night" 
+            class="w-full h-full object-cover"
+          >
+          <!-- Status Badge -->
+          <div class="absolute top-4 left-4">
+            <span class="bg-[#F59E0B] text-white text-[12px] font-bold px-3 py-1 rounded-full">
+              Pending
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Issue Title and Category -->
+      <div class="px-4 mt-6">
+        <div class="flex items-center gap-3 mb-3">
+          <h2 class="text-[22px] font-bold text-slate-900">Broken Street Light</h2>
+        </div>
+        <div class="inline-flex items-center px-3 py-1 rounded-full bg-[#3B82F6] text-white text-[11px] font-bold uppercase tracking-wider">
+          Electricity
+        </div>
+        
+        <p class="mt-4 text-[14px] leading-[1.6] text-slate-600">
+          The street light near Green Park is not working since last night. It's too dark and unsafe for pedestrians.
+        </p>
+      </div>
+
+      <!-- Metadata Section -->
+      <div class="px-4 mt-6 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#16A34A]">
+            <iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[12px] text-slate-400 font-medium">Location</span>
+            <span class="text-[14px] text-slate-900 font-semibold">Green Park, Coimbatore</span>
+          </div>
+        </div>
+        
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-[#16A34A]">
+            <iconify-icon icon="lucide:user" class="text-xl"></iconify-icon>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-[12px] text-slate-400 font-medium">Reported by</span>
+            <span class="text-[14px] text-slate-900 font-semibold">John Doe</span>
+          </div>
+          <div class="ml-auto">
+            <span class="text-[12px] text-slate-400">2 hours ago</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Updates Timeline -->
+      <div class="px-4 mt-8">
+        <h3 class="text-[16px] font-bold text-slate-900 mb-6">Status Updates</h3>
+        
+        <div class="space-y-8 pl-1">
+          <!-- Active Item: Pending -->
+          <div class="relative flex gap-4 timeline-item">
+            <div class="timeline-line"></div>
+            <div class="relative z-10 w-4 h-4 mt-1 rounded-full bg-[#F59E0B] ring-4 ring-orange-100"></div>
+            <div class="flex-1 -mt-1">
+              <div class="flex items-center justify-between mb-1">
+                <h4 class="text-[14px] font-bold text-slate-900">Pending</h4>
+                <span class="text-[12px] text-slate-400">2 hours ago</span>
+              </div>
+              <p class="text-[13px] text-slate-500">Issue reported and waiting for action.</p>
+            </div>
+          </div>
+
+          <!-- Inactive Item: Assigned -->
+          <div class="relative flex gap-4 timeline-item">
+            <div class="timeline-line"></div>
+            <div class="relative z-10 w-4 h-4 mt-1 rounded-full bg-slate-200"></div>
+            <div class="flex-1 -mt-1">
+              <h4 class="text-[14px] font-bold text-slate-400">Assigned</h4>
+            </div>
+          </div>
+
+          <!-- Inactive Item: In Progress -->
+          <div class="relative flex gap-4 timeline-item">
+            <div class="timeline-line"></div>
+            <div class="relative z-10 w-4 h-4 mt-1 rounded-full bg-slate-200"></div>
+            <div class="flex-1 -mt-1">
+              <h4 class="text-[14px] font-bold text-slate-400">In Progress</h4>
+            </div>
+          </div>
+
+          <!-- Inactive Item: Resolved -->
+          <div class="relative flex gap-4 timeline-item">
+            <div class="timeline-line"></div>
+            <div class="relative z-10 w-4 h-4 mt-1 rounded-full bg-slate-200"></div>
+            <div class="flex-1 -mt-1">
+              <h4 class="text-[14px] font-bold text-slate-400">Resolved</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Action -->
+      <div class="px-4 mt-10 mb-4">
+        <button 
+          id="maps-btn" 
+          class="w-full flex items-center justify-center gap-2 py-4 rounded-xl border-2 border-[#16A34A] text-[#16A34A] font-bold text-[15px] active:bg-[#16A34A] active:text-white transition-colors"
+        >
+          <iconify-icon icon="lucide:map" class="text-xl"></iconify-icon>
+          Open in Maps
+        </button>
+      </div>
+    </main>
+  </div>
+  <script src="js/core/storage.js"></script>
+  <script src="js/data/mockdb.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/user/issue-details.js"></script>
+</body>
+</html>

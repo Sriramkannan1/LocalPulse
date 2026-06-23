@@ -1,0 +1,66 @@
+/* Admin Specific Styles */
+.admin-sidebar {
+  display: none; /* By default hidden on very small screens if we had one */
+}
+
+/* Bulk actions bar */
+.bulk-actions {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-metric-card {
+  background-color: var(--card);
+  border-radius: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-metric-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+}
+
+.admin-metric-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+/* Checkboxes */
+.admin-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 0.25rem;
+  border: 2px solid var(--border);
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.admin-checkbox:checked {
+  background-color: var(--primary);
+  border-color: var(--primary);
+}
+
+.admin-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 1px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}

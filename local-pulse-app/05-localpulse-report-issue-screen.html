@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report an Issue - LocalPulse</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F8FAFC
+    }
+
+    .custom-shadow {
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06)
+    }
+
+    .input-focus:focus {
+      outline: none;
+      border-color: #16A34A;
+      box-shadow: 0 0 0 1px #16A34A
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/mobile.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <div class="w-full h-screen flex flex-col bg-[#F8FAFC]">
+    <header class="shrink-0 pt-14 pb-4 px-4 bg-white custom-shadow z-10">
+      <div class="flex items-center justify-between"><a href="04-localpulse-feed-screen.html" id="back-button"
+          class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-colors"><iconify-icon
+            icon="lucide:arrow-left" class="text-2xl text-gray-900"></iconify-icon></a>
+        <h1 class="text-lg font-bold text-gray-900">Report an Issue</h1>
+        <div class="w-10"></div>
+      </div>
+    </header>
+    <main class="flex-1 overflow-y-auto px-4 py-6 pb-12">
+      <form class="space-y-6">
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1.5">Title <span
+              class="text-red-500">*</span></label>
+          <div class="relative"><input type="text" id="issue-title" placeholder="Enter issue title"
+              class="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-gray-900 input-focus transition-all"
+              required></div>
+        </div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1.5">Description <span
+              class="text-red-500">*</span></label><textarea id="issue-desc" placeholder="Describe the issue in detail"
+            rows="5"
+            class="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-gray-900 input-focus transition-all resize-none"
+            required></textarea></div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1.5">Category <span
+              class="text-red-500">*</span></label>
+          <div class="relative"><select id="issue-category"
+              class="w-full bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 text-sm text-gray-900 input-focus transition-all appearance-none cursor-pointer"
+              required>
+              <option value="" disabled selected>Select Category</option>
+              <option value="Road Issue">Road Issue</option>
+              <option value="Water Issue">Water Issue</option>
+              <option value="Electricity">Electricity</option>
+              <option value="Garbage">Garbage</option>
+              <option value="Safety">Safety</option>
+              <option value="Other">Other</option>
+            </select>
+            <div class="absolute inset-y-0 right-4 flex items-center pointer-events-none"><iconify-icon
+                icon="lucide:chevron-down" class="text-gray-400"></iconify-icon></div>
+          </div>
+        </div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1.5">Location <span
+              class="text-red-500">*</span></label>
+          <div id="location-picker"
+            class="w-full bg-white border-2 border-dashed border-[#E2E8F0] rounded-xl p-4 flex items-center gap-3 cursor-pointer hover:bg-gray-50 transition-colors">
+            <div class="w-10 h-10 bg-gray-50 rounded-full flex items-center justify-center shrink-0"><iconify-icon
+                icon="lucide:map-pin" class="text-xl text-gray-400"></iconify-icon></div>
+            <p id="location-text" class="text-sm text-gray-400 font-medium">Tap to select location on map</p>
+          </div>
+        </div>
+        <div><label class="block text-sm font-semibold text-gray-700 mb-1.5">Add Photo <span
+              class="text-gray-400 font-normal">(optional)</span></label>
+          <div id="photo-picker"
+            class="w-full bg-white border-2 border-dashed border-[#E2E8F0] rounded-xl py-8 flex flex-col items-center justify-center gap-2 cursor-pointer hover:bg-gray-50 transition-colors relative overflow-hidden">
+            <iconify-icon icon="lucide:camera" class="text-3xl text-gray-300"></iconify-icon>
+            <p class="text-sm text-gray-400 font-semibold">Add Photo</p><img id="photo-preview" src=""
+              class="hidden absolute inset-0 w-full h-full object-cover"><input type="file" id="file-input"
+              accept="image/jpeg, image/png, image/jpg" class="hidden">
+          </div>
+        </div><button type="submit" id="submit-report"
+          class="w-full bg-[#16A34A] text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 active:scale-[0.98] transition-all flex items-center justify-center gap-2 mt-4"><iconify-icon
+            icon="lucide:check-circle" class="text-xl"></iconify-icon><span>Submit Report</span></button>
+      </form>
+    </main>
+  </div>
+  <script src="js/core/storage.js"></script>
+  <script src="js/data/mockdb.js"></script>
+  <script src="js/core/router.js"></script>
+  <script src="js/core/app.js"></script>
+  <script src="js/user/report.js"></script>
+</body>
+
+</html>
